@@ -1,4 +1,4 @@
-
+package com.diceroll.diceroller.ui.screens
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -19,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.diceroll.diceroller.R
 import com.diceroll.diceroller.viewmodel.GameViewModel
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
