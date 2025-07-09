@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DiceRoller</string>
     <string name="roll">Roll</string>
+    <string name="history">History</string>
+    <string name="clear_history">Clear History</string>
+    <string name="no_rolls_yet">No rolls yet. Roll the dice!</string>
+    <string name="roll_history_cleared">Roll history cleared</string>
+    <string name="dice_rolled_result">You rolled: %d</string>
+    <string name="press_roll_to_start">Press \'Roll\' to start!</string>
 </resources>

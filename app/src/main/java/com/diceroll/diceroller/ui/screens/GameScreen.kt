@@ -1,6 +1,4 @@
-// ui/screens/GameScreen.kt
 
-package com.diceroll.diceroller.ui.screens
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -28,12 +26,15 @@ fun GameScreen(navController: NavController, gameViewModel: GameViewModel) {
     val uiState by gameViewModel.uiState.collectAsStateWithLifecycle()
     var rotationState by remember { mutableStateOf(0f) }
 
+    
+    var hasRolled by remember { mutableStateOf(false) }
+
     val rotation = animateFloatAsState(
         targetValue = rotationState,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
-        ), label = ""
+        ), label = "diceRotation"
     )
 
     Scaffold(
@@ -58,13 +59,30 @@ fun GameScreen(navController: NavController, gameViewModel: GameViewModel) {
         ) {
             DiceImage(diceValue = uiState.currentDiceValue, rotation = rotation.value)
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(24.dp)) 
+
+            
+            if (hasRolled) {
+                Text(
+                    text = stringResource(R.string.dice_rolled_result, uiState.currentDiceValue),
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 24.dp) 
+                )
+            } else {
+                
+                Text(
+                    text = stringResource(R.string.press_roll_to_start),
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+            }
 
             Button(
                 onClick = {
-                    // Add a random rotation for a fun effect
+                    
                     rotationState += (720..1080).random().toFloat()
                     gameViewModel.rollDice()
+                    hasRolled = true 
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -81,7 +99,6 @@ fun GameScreen(navController: NavController, gameViewModel: GameViewModel) {
 
 @Composable
 fun DiceImage(diceValue: Int, rotation: Float, modifier: Modifier = Modifier) {
-    // We need to add these drawable resources to our project
     val imageResource = when (diceValue) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
