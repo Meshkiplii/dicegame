@@ -3,6 +3,7 @@
 package com.diceroll.diceroller.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -23,11 +24,7 @@ sealed class Screen(val route: String) {
 
 @Composable
 fun AppNavigation() {
-    
-    
     val gameViewModel: GameViewModel = viewModel()
-
-    
     NavHost(
         navController = LocalNavController.current,
         startDestination = Screen.Splash.route
