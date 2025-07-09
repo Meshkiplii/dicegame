@@ -80,8 +80,9 @@ fun GameScreen(navController: NavController, gameViewModel: GameViewModel) {
 
             Button(
                 onClick = {
-                    
-                    rotationState += (720..1080).random().toFloat()
+
+                    val fullSpins = (2..3).random() * 360f
+                    rotationState += fullSpins
                     gameViewModel.rollDice()
                     hasRolled = true 
                 },
